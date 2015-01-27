@@ -15,3 +15,13 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ .navbar {
+   border-radius: 0px;
+ }
+ .panel {
+   border-radius: 0px;
+ }
+ .container .jumbotron {
+   border-radius: 0px;
+  }
