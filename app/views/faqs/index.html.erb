@@ -1,0 +1,22 @@
+<div class =container>
+  <div class="page-header">
+    <h1>Frequenly Asked Questions</h1>
+  </div>
+
+
+  <div class = "list-of-questions">
+    <% @common_questions.each do |common_question| %>
+    <ul><%=link_to common_question.question, "##{common_question.question.parameterize}" %> </ul>
+    <% end %>
+  </div>
+
+  <div class = "questions-and-answers">
+    <% @common_questions.each do |common_question| %>
+      <h3 id="<%= common_question.question.parameterize%>"><%=common_question.question %> </h3>
+      <p><%= common_question.answer %></p>
+    <br>
+      <a href =#> top </a>
+    <% end %>
+  </div>
+
+</div>
