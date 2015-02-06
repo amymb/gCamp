@@ -5,7 +5,7 @@
 
   <div class = "list-of-questions">
     <% @common_questions.each do |common_question| %>
-    <ul><%=link_to common_question.question, "##{common_question.question.parameterize}" %> </ul>
+    <ul><li><%=link_to common_question.question, "##{common_question.question.parameterize}" %></li> </ul>
     <% end %>
   </div>
 
