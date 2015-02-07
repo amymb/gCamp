@@ -1,12 +1,17 @@
 <div class = "container">
   <div class = "page-header">
-    <h1>Edit Task</h1>
+    <h1>Editing Task</h1>
   </div>
 <%=form_for @task do |task| %>
 <div>
   <%=task.label "description"%>
   <%=task.text_field "description"%>
 </div>
- <%=task.submit "Submit Changes"%>
+<div>
+ <%=task.submit "Update Task"%>
+</div>
 <%end%>
+<div>
+  <%=link_to "Show", task_path %> | <%=link_to "Back", tasks_path %>
+
 </div>

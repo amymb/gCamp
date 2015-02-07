@@ -1,3 +1,10 @@
 <div class= "container">
-<%=@task.description %>
+
+  <div>
+  <p>Description: <%=@task.description %> </p>
+  </div>
+
+  <div>
+    <%=link_to "Edit", edit_task_path%> | <%=link_to "Back", tasks_path%>
+  </div>
 </div>
