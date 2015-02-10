@@ -17,7 +17,7 @@
 <body>
   <% if flash[:notice].present? %>
   <div class="alert alert-success">
-    <%= flash[:notice] %>
+    <p class=text-center><%= flash[:notice] %></p>
   </div>
   <% end %>
 <%= yield %>

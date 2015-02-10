@@ -8,9 +8,11 @@
     <tr><th> Description</th></tr>
     <% @tasks.each do |task| %>
     <tr><td>
+      <div class="pull-right">
+        <%=link_to 'Edit', edit_task_path(task), class: "btn btn-info"%>
+        <%=link_to 'Destroy', task, method: :delete, class: "btn btn-danger"%>
+      </div>
       <%=link_to task.description, task%>
-      <%=link_to 'Edit', edit_task_path(task), class: "btn btn-info"%>
-      <%=link_to 'Destroy', task, method: :delete, class: "btn btn-danger"%>
     </td></tr>
     <%end%>
   </table>
