@@ -1,12 +1,5 @@
 <!DOCTYPE html>
-<nav class="navbar navbar-inverse">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <a class="navbar-brand" href="./">gCamp</a>
-    </div>
-  </div>
-</nav>
+
 <html>
 <head>
   <title>GCamp</title>
@@ -15,13 +8,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% if flash[:notice].present? %>
-  <div class="alert alert-success">
-    <p class=text-center><%= flash[:notice] %></p>
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">gCamp</a>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <% if flash[:notice].present? %>
+    <div class="alert alert-success">
+      <p class=text-center><%= flash[:notice] %></p>
+    </div>
+    <% end %>
+    <%= yield %>
   </div>
-  <% end %>
-<%= yield %>
-
 </body>
 <footer>
   <div class="container">
