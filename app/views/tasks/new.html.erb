@@ -10,7 +10,7 @@
 </div>
 
 <br>
-  <%=form_for Task.new, html:{class:"form-horizontal"} do |task|%>
+  <%=form_for @task, html:{class:"form-horizontal"} do |task|%>
 <div class="form-group">
   <%=task.label :description, class:"col-md-2 control-label"%>
   <%=task.text_field :description, class:"col-md-4"%>
