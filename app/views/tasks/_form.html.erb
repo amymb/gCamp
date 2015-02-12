@@ -6,12 +6,15 @@
       <%=task.text_field :description, class:"form-control"%>
     </div>
   </div>
-  <div class="form-group">
-   <div class="col-sm-offset-2 col-md-5">
-     <%=task.check_box :completed%>
-     <%=task.label "Complete"%>
+
+  <% unless @task.new_record? %>
+    <div class="form-group">
+     <div class="col-sm-offset-2 col-md-5">
+       <%=task.check_box :completed%>
+       <%=task.label "Complete"%>
+     </div>
    </div>
- </div>
+  <% end %>
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-5">
