@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   get '/terms' => 'terms#index'
   get '/faqs' => 'faqs#index'
   resources :tasks
+  resources :users
 
 end
