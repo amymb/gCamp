@@ -30,7 +30,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     if @task.update(task_params)
       #  Fill this in with flash message for success
-      redirect_to tasks_path
+      redirect_to task_path
     else
       #  Fill this in with flash message for error
       render :edit
@@ -46,7 +46,7 @@ class TasksController < ApplicationController
 private
 
   def task_params
-    params.require(:task).permit(:description, :completed)
+    params.require(:task).permit(:description, :completed, :due_date)
   end
 
 end
