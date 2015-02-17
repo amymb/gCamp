@@ -6,26 +6,33 @@
 <table class="table">
   <thead>
     <tr>
+      <div class=col-md-2>
+        <th> Name</th>
+      </div>
       <div=col-md-2>
-      <th> Name</th>
-    </div>
-    <div=col-md-2>
-      <th> Email</th>
-    </div>
+        <th> Email</th>
+      </div>
     </tr>
-      <% @users.each do |user| %>
-    <tr>
   </thead>
-  <div=col-md-2>
-  <td>
-    <%=user.first_name + ' ' + user.last_name%>
-  </td>
-  </div>
-  <div=col-md-2>
-  <td>
-      <%=mail_to user.email%>
+<% @users.each do |user| %>
+  <tr>
+    <div class=col-md-2>
+      <td>
+        <%=user.first_name + ' ' + user.last_name%>
+      </td>
+    </div>
+
+    <div class=col-md-2>
+      <td>
+        <%=mail_to user.email%>
+      </td>
+    </div>
+    <td>
+      <div class="text-right">
+        <%=link_to "edit", edit_user_path(user)%>
+      </div>
     </td>
   </tr>
+<%end%>
 
-  <%end%>
-  </table>
+</table>
