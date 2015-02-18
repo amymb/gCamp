@@ -1,7 +1,9 @@
 <div class = "page-header">
   <h1>
-        <%=@user.first_name + @user.last_name%>
+        <%=@user.first_name + ' '+ @user.last_name%>
   </h1>
 </div>
 
-<%=@user.email%>
+<div class="container">
+<p><strong> Email: </strong> <%=mail_to @user.email%></p>
+</div>
