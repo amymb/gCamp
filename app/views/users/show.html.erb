@@ -1,9 +1,15 @@
 <div class = "page-header">
+  <div class="pull-right"><%=link_to 'Edit', edit_user_path, class: "btn btn-info"%></div>
   <h1>
-        <%=@user.first_name + ' '+ @user.last_name%>
+    <%=@user.first_name + ' '+ @user.last_name%>
   </h1>
 </div>
 
-<div class="container">
-<p><strong> Email: </strong> <%=mail_to @user.email%></p>
+<div class="dl-horizontal">
+  <dt>First name </dt>
+  <dd><%=@user.first_name%></dd>
+  <dt>Last name </dt>
+  <dd><%=@user.last_name%></dd>
+  <dt>Email</dt>
+  <dd><%=mail_to @user.email%></dd>
 </div>
