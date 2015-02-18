@@ -1,6 +1,12 @@
 <div class = "page-header">
-  <div class="pull-right"><%=link_to "Delete User", @user, data:{confirm: "Are you sure you want to delete this user?"}, method: :delete, class: "btn btn-danger"%></div>
+
   <h1>Edit User</h1>
 
 </div>
 <%=render partial: "form", locals:{name_of_button: "Update User"}%>
+
+<div class="form-group">
+  <div class="col-md-offset-2 col-md-4 well">
+    <%=link_to "Delete User", @user, method: :delete, class: "btn btn-danger col-md-offset-4 col-md-4"%>
+  </div>
+</div>
