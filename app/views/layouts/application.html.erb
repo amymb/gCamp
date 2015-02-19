@@ -19,7 +19,7 @@
   <div class="container">
     <% if flash[:notice].present? %>
     <div class="alert alert-success">
-      <p class=text-center><%= flash[:notice] %></p>
+      <p><%= flash[:notice] %></p>
     </div>
     <% end %>
     <%= yield %>
@@ -29,7 +29,7 @@
   <div class="container">
     <hr>
 
-    <%=link_to "About", "/about" %> | <%=link_to "Terms", "/terms"%> | <%=link_to "FAQs", "/faqs" %> | <%=link_to "Tasks", "/tasks"%> | <%=link_to "Users", "/users"%>
+    <%=link_to "About", "/about" %> | <%=link_to "Terms", "/terms"%> | <%=link_to "FAQs", "/faqs" %> | <%=link_to "Tasks", "/tasks"%> | <%=link_to "Users", "/users"%> | <%=link_to "Projects", "/projects"%>
 
     <%=link_to "https://students.gschool.it/students/270" do %>
       <%=image_tag("galvanize_icon.png", class: "social_media_links")%>

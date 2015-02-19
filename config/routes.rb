@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   get '/faqs' => 'faqs#index'
   resources :tasks
   resources :users
+  resources :projects
 
 end
