@@ -10,7 +10,7 @@
     <div class = "col-md-6 col-md-offset-2">
     <div class="alert alert-danger",  role ="alert">
       <h3><%=pluralize(@task.errors.count, "error")%>
-          prevented this form from being saved:</h3>
+          prohibited this form from being saved:</h3>
           <ul>
             <%@task.errors.full_messages.each do |msg|%>
             <li><%=msg%></li>
