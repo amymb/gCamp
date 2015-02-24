@@ -6,18 +6,14 @@
 <table class="table">
   <thead>
     <tr>
-      <div=col-md-2>
       <th> Description</th>
-    </div>
-    <div=col-md-2>
       <th> Due on</th>
-    </div>
+      <th></th>
     </tr>
       <% @tasks.each do |task| %>
     <tr>
   </thead>
   <div=col-md-2>
-
   <td>
     <%if task.completed == true%>
         <s><%=link_to task.description, task%></s>
@@ -38,7 +34,7 @@
       <%=link_to 'Edit', edit_task_path(task), class: "btn btn-info"%>
       <%=link_to 'Destroy', task, method: :delete, class: "btn btn-danger"%>
     </div>
-    </td>
+  </td>
   </tr>
 
   <%end%>
