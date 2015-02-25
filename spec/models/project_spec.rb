@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 describe Project do
-  it "is true" do
-    expect(true).to eq(true)
+  it "validates the presence of a name" do
+    project = Project.create(name: nil)
+    project.valid?
+    expect(project.errors[:name]).to include("can't be blank")
   end
  end
