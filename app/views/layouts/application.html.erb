@@ -14,13 +14,15 @@
       <div class="navbar-header">
         <a class="navbar-brand" href="/">gCamp</a>
       </div>
-        <p class="navbar-text navbar-right">
+        <ul class="nav navbar-nav navbar-right">
         <%if current_user%>
-          <%=link_to current_user.first_name + ' ' + current_user.last_name, user_path%>
-        <%else%>
-          <%=link_to "Sign up for gCamp!", sign_up_path%>
-        <%end%>
-        </p>
+        <li><%=link_to (current_user.first_name + ' ' + current_user.last_name), user_path(current_user)%>
+            <li><%=link_to "Sign Out", sign_out_path %></li>
+          <%else%>
+            <li><%=link_to "Sign up for gCamp!", sign_up_path%></li>
+          <%end%>
+
+        </ul>
   </div>
   </nav>
   <div class="container">
