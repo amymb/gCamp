@@ -26,18 +26,23 @@
         </ul>
   </div>
   </nav>
+
   <div class="container">
+
     <% if flash[:notice].present? %>
     <div class="alert alert-success">
       <p><%= flash[:notice] %></p>
     </div>
     <% end %>
+
       <% if flash[:blah].present? %>
       <div class="alert alert-danger">
         <p><%= flash[:blah] %></p>
       </div>
       <% end %>
+
     <%= yield %>
+
   </div>
 
  </body>
