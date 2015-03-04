@@ -48,14 +48,15 @@ feature 'user can manage users' do
     visit users_path
     click_link "Test User1"
     click_link "Edit"
-    fill_in "last_name", with: "User123"
-    click_link "Update User"
+    fill_in "Last name", with: "User123"
+    click_button "Update user"
     expect(page).to have_content "User was successfully updated"
-    expect(page).to have_content "TestUser123"
+    expect(page).to have_content "Test User123"
   end
 
   scenario 'user can delete users' do
     testuser = User.new(first_name: 'Test', last_name: 'User', email: 'TestUser@email.com', password: 'password')
+    testuser.save!
     sign_in_user
     visit users_path
     click_link "Test User"
