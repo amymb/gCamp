@@ -32,8 +32,15 @@
       <p><%= flash[:notice] %></p>
     </div>
     <% end %>
+    <div class="container">
+      <% if flash[:blah].present? %>
+      <div class="alert alert-danger">
+        <p><%= flash[:blah] %></p>
+      </div>
+      <% end %>
     <%= yield %>
   </div>
+
 </body>
 <footer>
   <div class="container">

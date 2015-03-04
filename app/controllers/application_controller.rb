@@ -9,4 +9,11 @@ class ApplicationController < ActionController::Base
       User.find(session[:user_id])
     end
   end
+
+  def ensure_authenticated
+    unless current_user
+    flash[:blah] ='You must sign in'
+    redirect_to sign_in_path
+  end
+  end
 end

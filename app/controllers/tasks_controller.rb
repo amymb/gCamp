@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :ensure_authenticated
   def index
     @tasks = Task.all
   end

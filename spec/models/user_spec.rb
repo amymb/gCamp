@@ -5,10 +5,11 @@ describe User do
     @valid_attributes = {
       first_name: "Amy",
       last_name: "Bertken",
-      email: "amy@test.com"
+      email: "amy@test.com",
+      password: "testing"
     }
   end
-  
+
   it "validates user with first, last name, and email" do
     user = User.create(@valid_attributes)
     expect(user).to be_valid
