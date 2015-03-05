@@ -1,4 +1,4 @@
-require 'rails-helper'
+require 'rails_helper'
 
 feature 'can CRUD projects' do
   scenario 'user can see projects from an index page' do
@@ -13,12 +13,12 @@ feature 'can CRUD projects' do
     expect(page).to have_content "Test Project 2"
   end
 
-  scenario 'user can create new projects'
+  scenario 'user can create new projects' do
     sign_in_user
     visit projects_path
 
     click_link "New Project"
-    click_link "Create Project"
+    click_button "Create Project"
 
     expect(page).to have_content "Name can't be blank"
 
@@ -32,7 +32,7 @@ feature 'can CRUD projects' do
     expect(page).to have_content "Greatest Project of All Time"
   end
 
-  scenario 'user can edit projects'
+  scenario 'user can edit projects' do
     coolproject = Project.new(name: "Frozen Custard")
     coolproject.save!
     sign_in_user
@@ -54,7 +54,7 @@ feature 'can CRUD projects' do
     expect(page).to have_content "Double Frozen Custard"
   end
 
-  scenario 'user can delete projects'
+  scenario 'user can delete projects' do
     hotproject = Project.new(name: "Cross Buns")
     hotproject.save!
     sign_in_user
