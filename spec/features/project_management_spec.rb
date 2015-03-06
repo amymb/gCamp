@@ -33,6 +33,19 @@ feature 'can CRUD projects' do
     end
 
     expect(page).to have_content "Greatest Project of All Time"
+
+  end
+
+  scenario "user can visit memberships index from projects page" do
+    testproject1 = Project.new(name: "Test Project 1")
+    testproject1.save!
+    sign_in_user
+
+    visit projects_path
+    click_on "Test Project 1"
+    click_on "0 Memberships"
+
+    expect(page).to have_content "Test Project 1: Manage Members"
   end
 
   scenario 'user can edit projects' do
