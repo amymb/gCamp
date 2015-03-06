@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   get '/about' => 'about#index'
   get '/terms' => 'terms#index'
   get '/faqs' => 'faqs#index'
-  resources :tasks
+
   resources :users
-  resources :projects
+  resources :projects do
+    resources :tasks
+  end
   get 'sign-up', to: 'registrations#new'
   post 'sign-up', to: 'registrations#create'
   get 'sign-in', to: 'authentication#new'

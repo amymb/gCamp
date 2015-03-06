@@ -28,7 +28,10 @@ feature 'can CRUD projects' do
     expect(page).to have_content "Project was successfully created"
     expect(page).to have_content "Greatest Project of All Time"
 
-    click_link "Projects"
+    within(".breadcrumb") do
+      click_on "Projects"
+    end
+
     expect(page).to have_content "Greatest Project of All Time"
   end
 
@@ -50,7 +53,10 @@ feature 'can CRUD projects' do
 
     expect(page).to have_content "Project was successfully updated"
 
-    click_link "Projects"
+    within(".breadcrumb") do
+      click_on "Projects"
+    end
+
     expect(page).to have_content "Double Frozen Custard"
   end
 
@@ -65,4 +71,38 @@ feature 'can CRUD projects' do
     expect(page).to have_content "Project was successfully deleted"
     expect(page).to_not have_content "Cross Buns"
   end
+
+  scenario 'project has breadcrumbs' do
+
+    hotproject = Project.new(name: "Cross Buns")
+    hotproject.save!
+    sign_in_user
+
+    visit projects_path
+
+    click_link "New Project"
+
+    expect(page).to have_content "Projects New Project"
+
+    within(".breadcrumb") do
+      click_on "Projects"
+    end
+
+    click_link "Cross Buns"
+
+    expect(page).to have_content "Projects Cross Buns"
+
+    click_link "Edit"
+
+    expect(page).to have_content "Projects Cross Buns Edit"
+  end
+
+
+
+
+
+
+
+
+
 end

@@ -1,5 +1,5 @@
 <div class = "page-header">
-  <div class="pull-right"><%=link_to "Edit", edit_task_path, class:"btn btn-info"%></div>
+  <div class="pull-right"><%=link_to "Edit", edit_project_task_path(@project, @task), class:"btn btn-info"%></div>
   <h1>
     <%if @task.completed == true%>
       <s><%=@task.description%></s>
@@ -11,7 +11,7 @@
 
 <div>
   <ol class="breadcrumb">
-    <li><%=link_to "Tasks", tasks_path%></li>
+    <li><%=link_to "Tasks", project_tasks_path(@project)%></li>
     <li class="active"><%=@task.description%></li>
   </ol>
 </div>

@@ -44,7 +44,6 @@ feature "user authorization" do
     click_link "Little Bo Peep"
     expect(page).to have_content "little@email.com"
     expect(page).to have_content "Projects"
-    expect(page).to have_content "Tasks"
   end
 
   scenario "user can sign out" do

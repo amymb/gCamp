@@ -1,5 +1,11 @@
 <div class = "page-header">
   <h1>New Project</h1>
 </div>
+<div>
+  <ol class="breadcrumb">
+    <li><%=link_to "Projects", projects_path%></li>
+    <li class="active">New Project </li> </li>
+  </ol>
+</div>
 
 <%=render partial: "form", locals:{name_of_button: "Create Project"}%>
