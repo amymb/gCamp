@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users
   resources :projects do
     resources :tasks
+    resources :memberships
   end
   get 'sign-up', to: 'registrations#new'
   post 'sign-up', to: 'registrations#create'
@@ -14,5 +15,4 @@ Rails.application.routes.draw do
   post 'sign-in', to: 'authentication#create'
   get 'sign-out', to: 'authentication#destroy'
 
-  get 'memberships', to: 'memberships#index'
 end
