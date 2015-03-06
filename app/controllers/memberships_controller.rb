@@ -4,11 +4,21 @@ class MembershipsController < ApplicationController
   end
 
   def index
-    @members = @project.users
+    @membership = @project.memberships.new
   end
 
+  def create
+    membership = @project.memberships.new(membership_params)
+    if membership.save
+      flash[:notice] = "#{membership.user.full_name} was successfully created"
+      redirect_to project_memberships_path
+    else
+      @membership = membership
+      render :index
+    end
+  end
 
   def membership_params
-    params.require(:membership).permit(:user_id, :project_id)
+    params.require(:membership).permit(:user_id, :project_id, :role)
   end
 end

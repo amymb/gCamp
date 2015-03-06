@@ -20,7 +20,8 @@ def create_membership
   user = create_user
   Membership.create!(
     project_id: @project.id,
-    user_id: user.id
+    user_id: user.id,
+    role: 'Member'
   )
 end
 

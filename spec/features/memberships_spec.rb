@@ -18,4 +18,18 @@ feature 'manage memberships' do
     visit project_memberships_path(@project)
     expect(page).to have_content "Projects Test Project Memberships"
   end
+
+  scenario 'user can choose member from collection, select role, and create new member' do
+    project = create_project
+    user = create_user
+    sign_in_user
+    visit project_memberships_path(project)
+    select user.full_name, from: 'membership_user_id'
+    select "Owner", from: 'membership_role'
+    click_on "Add New Member"
+    expect(page).to have_content "Goosey Loosey"
+  end
+
+
+
 end
