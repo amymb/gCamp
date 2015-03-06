@@ -10,13 +10,22 @@
   </ol>
 </div>
 
-<div class = "well">
+
 <%=form_for [@project, @membership], html:{class: "form-inline"} do |f|%>
-  <%=f.collection_select(:user_id, User.all, :id, :full_name, {prompt: "Please select a user..."})%>
-  <%=f.collection_select(:role, Membership::ROLE, :to_s, :to_s)%>
-  <%=f.submit "Add New Member", class: "btn btn-primary"%>
-<%end%>
+<div class = "well">
+  <div class = "form-group">
+    <%=f.collection_select(:user_id, User.all, :id, :full_name, {prompt: "Please select a user..."}, {class: "form-control"})%>
+  </div>
+  <div class = "form-group">
+    <%=f.collection_select(:role, Membership::ROLE, :to_s, :to_s, {}, {class: "form-control"})%>
+  </div>
+
+  <div class = "form-group">
+    <%=f.submit "Add New Member", class: "btn btn-primary"%>
+  </div>
 </div>
+<%end%>
+
 
 
 <%@project.users.each do |user|%>
