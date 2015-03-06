@@ -9,10 +9,25 @@
     <li class="active">Memberships</li>
   </ol>
 </div>
+<div class = "row">
+<div class = "col-md-7">
+<% if @membership.errors.any? %>
+    <div class="alert alert-danger", role ="alert">
+      <h3><%=pluralize(@membership.errors.count, "error")%>
+        prohibited this form from being saved:</h3>
+      <ul>
+        <%@membership.errors.full_messages.each do |msg|%>
+        <li><%=msg%></li>
+        <%end%>
+      </ul>
+  </div>
+<%end%>
+</div>
+</div>
 
 
-<%=form_for [@project, @membership], html:{class: "form-inline"} do |f|%>
 <div class = "well">
+  <%=form_for [@project, @membership], html:{class: "form-inline"} do |f|%>
   <div class = "form-group">
     <%=f.collection_select(:user_id, User.all, :id, :full_name, {prompt: "Please select a user..."}, {class: "form-control"})%>
   </div>
@@ -23,11 +38,11 @@
   <div class = "form-group">
     <%=f.submit "Add New Member", class: "btn btn-primary"%>
   </div>
+  <%end%>
 </div>
-<%end%>
-
 
 
 <%@project.users.each do |user|%>
-    <p><%=user.full_name%></p>
+    <p><%=link_to user.full_name, user_path(user)%></p>
+
 <%end%>

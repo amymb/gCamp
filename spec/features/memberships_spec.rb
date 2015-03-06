@@ -24,6 +24,10 @@ feature 'manage memberships' do
     user = create_user
     sign_in_user
     visit project_memberships_path(project)
+    click_on "Add New Member"
+
+    expect(page).to have_content "User can't be blank"
+    
     select user.full_name, from: 'membership_user_id'
     select "Owner", from: 'membership_role'
     click_on "Add New Member"
