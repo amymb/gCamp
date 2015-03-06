@@ -15,8 +15,10 @@
   </ol>
 </div>
 
-<%if @project.tasks.any?%>
+<div class = "container"> 
+  <%if @project.tasks.any?%>
   <%=link_to pluralize(@project.tasks.count, "Task"), project_tasks_path(@project) %>
   <%else%>
   <%=link_to "0 Tasks", project_tasks_path(@project)%>
 <%end%>
+</div>

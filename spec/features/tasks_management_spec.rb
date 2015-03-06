@@ -12,7 +12,7 @@ feature 'Can CRUD tasks' do
     sign_in_user
     visit projects_path
 
-    expect(page).to_not have_content "Tasks"
+    expect(".footer").to_not have_content "Tasks"
 
     click_on "TestProject"
 
@@ -79,4 +79,21 @@ feature 'Can CRUD tasks' do
     expect(page).to_not have_content 'Really Fun Task'
     expect(page).to_not have_content '12/12/18'
   end
+
+
+  scenario 'user can see number of tasks from project index page' do
+    project = Project.new(name: "TestProject")
+    project.save!
+    fun_task = Task.new(description: 'Fun Task', due_date: "12-12-18", project_id: project.id)
+    fun_task.save!
+    sign_in_user
+
+    visit projects_path
+
+    expect(page).to have_content "TestProject"
+    click_on "1"
+
+    expect(page).to have_content "Fun Task"
+  end
+
 end
