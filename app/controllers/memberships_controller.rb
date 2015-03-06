@@ -8,5 +8,7 @@ class MembershipsController < ApplicationController
   end
 
 
-
+  def membership_params
+    params.require(:membership).permit(:user_id, :project_id)
+  end
 end
