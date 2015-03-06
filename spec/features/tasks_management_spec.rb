@@ -1,5 +1,13 @@
 require 'rails_helper'
 
+#Tasks index should say 'Tasks for (project name)'
+#Tasks index breadcrumbs should be "Projects / (name of project) / Tasks
+#Tasks show breadcrumbs should be "Projects / (name of project) / Tasks / <name of task>
+#Tasks edit and show should be prefaced the same way
+
+
+
+
 feature 'Can CRUD tasks' do
 
   scenario 'project tasks page linked to from project' do
@@ -23,7 +31,7 @@ feature 'Can CRUD tasks' do
     expect(page).to have_content "Due On:"
   end
 
-  scenario 'User can create and see tasks in show and index pages' do
+  scenario 'User can create and see tasks in project task show and project task index pages' do
     project = Project.new(name: "TestProject")
     project.save!
 
@@ -35,6 +43,8 @@ feature 'Can CRUD tasks' do
 
     click_link 'New Task'
 
+    expect(page).to have_content 'Projects TestProject Tasks New'
+
     click_button 'Create Task'
     expect(page).to have_content 'Description can\'t be blank'
 
@@ -42,8 +52,13 @@ feature 'Can CRUD tasks' do
     click_button 'Create Task'
 
     expect(page).to have_content 'Exciting Task'
+    expect(page).to have_content "Projects TestProject"
     expect(page).to have_content "Task was successfully created"
+
     click_link('Tasks', match: :first)
+
+    expect(page).to have_content 'Tasks for TestProject'
+    expect(page).to have_content "Projects TestProject"
 
     expect(page).to have_content 'Exciting Task'
   end
@@ -63,6 +78,8 @@ feature 'Can CRUD tasks' do
 
     click_link 'Fun Task'
     click_link 'Edit'
+
+    expect(page).to have_content "Projects TestProject Tasks Fun Task Edit"
     fill_in 'Description', with: ""
     click_button 'Update Task'
 
