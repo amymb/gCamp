@@ -27,7 +27,7 @@ feature 'manage memberships' do
     select user.full_name, from: 'membership_user_id'
     select "Owner", from: 'membership_role'
     click_on "Add New Member"
-    expect(page).to have_content "Goosey Loosey"
+    expect(page).to have_content "Goosey Loosey was successfully added"
   end
 
 

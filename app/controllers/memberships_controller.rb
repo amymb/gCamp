@@ -10,7 +10,7 @@ class MembershipsController < ApplicationController
   def create
     membership = @project.memberships.new(membership_params)
     if membership.save
-      flash[:notice] = "#{membership.user.full_name} was successfully created"
+      flash[:notice] = "#{membership.user.full_name} was successfully added"
       redirect_to project_memberships_path
     else
       @membership = membership
