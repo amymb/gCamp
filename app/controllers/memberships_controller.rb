@@ -28,6 +28,13 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def destroy
+    membership = @project.memberships.find(params[:id])
+    membership.destroy
+    flash[:notice] = "#{membership.user.full_name} was successfully destroyed"
+    redirect_to project_memberships_path
+  end
+
 
   def membership_params
     params.require(:membership).permit(:user_id, :project_id, :role)

@@ -46,6 +46,19 @@ feature 'manage memberships' do
 
   end
 
+  scenario 'user can delete member from index page' do
+    project = create_project
+    create_membership
+    sign_in_user
+    visit project_memberships_path(project)
+
+    expect(page).to have_content "Goosey Loosey"
+
+    #find('a')[:glyphicon].click
+
+    #expect(page).to_not have_content "Goosey Loosey"
+  end
+
 
 
 end
