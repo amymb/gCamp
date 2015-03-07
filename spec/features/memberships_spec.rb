@@ -27,11 +27,23 @@ feature 'manage memberships' do
     click_on "Add New Member"
 
     expect(page).to have_content "User can't be blank"
-    
+
     select user.full_name, from: 'membership_user_id'
     select "Owner", from: 'membership_role'
     click_on "Add New Member"
     expect(page).to have_content "Goosey Loosey was successfully added"
+
+    select user.full_name, from: 'membership_user_id'
+    click_on "Add New Member"
+    expect(page).to have_content "User has already been added to this project"
+  end
+
+  scenario 'user can update member from index page' do
+    project = create_project
+    create_membership
+    visit project_memberships_path(project)
+    expect(page).to have_content "Goosey Loosey"
+
   end
 
 

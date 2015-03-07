@@ -41,8 +41,23 @@
   <%end%>
 </div>
 
-
-<%@project.users.each do |user|%>
-    <p><%=link_to user.full_name, user_path(user)%></p>
-
-<%end%>
+<table class = "table">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <%@project.memberships.each do |membership|%>
+  <%if membership.id%>
+    <tr>
+      <%=form_for [@project, membership], html:{class: "form-inline"} do |f|%>
+        <td><%=link_to membership.user.full_name, user_path(membership.user)%></td>
+        <td class = "form-group"><%=f.collection_select(:role, Membership::ROLE, :to_s, :to_s, {}, {class: "form-control"})%></td>
+        <td class = "form-group"><%=f.submit "Update", class: "btn btn-primary"%></td>
+      <%end%>
+    </tr>
+    <%end%>
+  <%end%>
+</table>
