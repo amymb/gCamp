@@ -25,7 +25,7 @@
 <br>
 <div>
 <%if @project.users.any?%>
-  <%=link_to pluralize(@project.users.count, "Member"), project_memberships_path(@project) %>
+  <%=link_to pluralize(@project.users.count, "Membership"), project_memberships_path(@project) %>
   <%else%>
   <%=link_to "0 Memberships", project_memberships_path(@project) %>
 <%end%>
