@@ -25,8 +25,9 @@
 </div>
 </div>
 
-
-<div class = "well">
+<div class = "row">
+<div class = "col-md-7">
+  <div class = "well">
   <%=form_for [@project, @membership], html:{class: "form-inline"} do |f|%>
   <div class = "form-group">
     <%=f.collection_select(:user_id, User.all, :id, :full_name, {prompt: "Please select a user..."}, {class: "form-control"})%>
@@ -40,18 +41,16 @@
   </div>
   <%end%>
 </div>
+</div>
+</div>
 
+<div class = "row">
+<div class = "col-md-7">
 <table class = "table">
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+  <tbody>
   <%@project.memberships.each do |membership|%>
-  <%if membership.id%>
     <tr>
+      <%if membership.id%>
       <%=form_for [@project, membership], html:{class: "form-inline"} do |f|%>
         <td><%=link_to membership.user.full_name, user_path(membership.user)%></td>
         <td class = "form-group"><%=f.collection_select(:role, Membership::ROLE, :to_s, :to_s, {}, {class: "form-control"})%></td>
@@ -60,7 +59,10 @@
         <td>
           <%=link_to "", [@project, membership], method: :delete, class:"glyphicon glyphicon-remove"%></td>
       <%end%>
+      <%end%>
     </tr>
-    <%end%>
   <%end%>
+  </tbody>
 </table>
+</div>
+</div>
