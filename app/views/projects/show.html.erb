@@ -1,7 +1,5 @@
 <div class = "page-header">
-  <div class="pull-right"><%=link_to 'Edit', edit_project_path, class: "btn btn-info"%>
-  <%=link_to 'Delete', @project, method: :delete, class: "btn btn-danger"%>
-  </div>
+  <div class="pull-right"><%=link_to 'Edit', edit_project_path, class: "btn btn-info"%> </div>
 
 
   <h1>
@@ -29,4 +27,12 @@
   <%else%>
   <%=link_to "0 Memberships", project_memberships_path(@project) %>
 <%end%>
+</div>
+<br>
+<div class = "well">
+  <h3> Delete </h3>
+  <%="Deleting this project will also delete #{pluralize(@project.memberships.count, "membership")}, #{pluralize(@project.tasks.count, "task")} and associated comments"%>
+  <br>
+  <br>
+  <%=link_to 'Delete', @project, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-danger"%>
 </div>

@@ -91,7 +91,7 @@ feature 'Can CRUD tasks' do
     expect(page).to have_content 'Task was successfully updated'
 
     click_link('Tasks', match: :first)
-    click_link 'Destroy'
+    find(".glyphicon-remove").click
 
     expect(page).to_not have_content 'Really Fun Task'
     expect(page).to_not have_content '12/12/18'

@@ -53,7 +53,7 @@ feature 'manage memberships' do
     expect(page).to have_content "Goosey Loosey"
 
     find(".glyphicon").click
-    save_and_open_page
+    
     expect(page).to have_content "Goosey Loosey was successfully removed"
   end
 

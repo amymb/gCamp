@@ -5,6 +5,8 @@
 <div class ="row">
   <div class="col-md-4">
   <%= image_tag("about_image.jpg", class: "img-responsive") %>
+
+
   </div>
 
   <div class="col-md-8">
@@ -13,3 +15,7 @@
     <p>Human collaboration and communication is what drives us, and it infuses every feature of gCamp.</p>
   </div>
 </div>
+
+<p>gCamp is extremely active. Check out our killer stats below!</p>
+<p><%="#{pluralize(Project.all.count, "Project")}, #{pluralize(Task.all.count, "Task")}, #{pluralize(Membership.all.count, "Project Member")},
+#{pluralize(User.all.count, "User")}, #{pluralize(Comment.all.count, "Comment")}"%></p>

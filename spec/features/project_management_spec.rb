@@ -74,15 +74,19 @@ feature 'can CRUD projects' do
   end
 
   scenario 'user can delete projects' do
-    hotproject = Project.new(name: "Cross Buns")
-    hotproject.save!
+    create_membership
+    Task.create!(description: "baaaa", project_id: @project.id)
+    Task.create!(description: "blah", project_id: @project.id)
     sign_in_user
     visit projects_path
-    click_link "Cross Buns"
+    click_link @project.name
+
+    expect(page).to have_content "Deleting this project will also delete 1 membership, 2 tasks and associated comments"
     click_link "Delete"
 
     expect(page).to have_content "Project was successfully deleted"
-    expect(page).to_not have_content "Cross Buns"
+    expect(page).to_not have_content @project.name
+    
   end
 
   scenario 'project has breadcrumbs' do
