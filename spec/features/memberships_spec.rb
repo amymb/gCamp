@@ -38,25 +38,23 @@ feature 'manage memberships' do
     expect(page).to have_content "User has already been added to this project"
   end
 
-  scenario 'user can update member from index page' do
-    project = create_project
-    create_membership
-    visit project_memberships_path(project)
-    expect(page).to have_content "Goosey Loosey"
-
-  end
 
   scenario 'user can delete member from index page' do
     project = create_project
-    create_membership
+    user = create_user
     sign_in_user
+
     visit project_memberships_path(project)
+
+    select user.full_name, from: 'membership_user_id'
+    select "Owner", from: 'membership_role'
+    click_on "Add New Member"
 
     expect(page).to have_content "Goosey Loosey"
 
-    #find('a')[:glyphicon].click
-
-    #expect(page).to_not have_content "Goosey Loosey"
+    find(".glyphicon").click
+    save_and_open_page
+    expect(page).to have_content "Goosey Loosey was successfully removed"
   end
 
 

@@ -1,17 +1,13 @@
-def sign_in_user
-  user = User.new(first_name: 'Piglet', last_name: 'Smith', email: 'piggy@email.com', password: 'verysafe', password_confirmation: 'verysafe')
-  user.save!
-  visit root_path
-  click_link 'Sign in'
-  fill_in :email, with: 'piggy@email.com'
-  fill_in :password, with: 'verysafe'
-  click_button 'Sign In'
-end
 
 def create_project
   Project.create!(
     name: "Test Project"
   )
+end
+
+def create_task
+  project = create_project
+  Task.create!(description: "baaaa", project_id: project.id)
 end
 
 

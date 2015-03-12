@@ -18,9 +18,45 @@
   </ol>
 </div>
 
-<div class="container">
   <strong>Due On:</strong>
     <%if @task.due_date%>
       <%=@task.due_date.strftime("%m/%d/%Y")%>
     <%end%>
+
+<br>
+<h3>
+  Comments
+</h3>
+
+
+  <%@task.comments.each do |comment|%>
+    <%if comment.id%>
+    <div class = "row">
+    <div class = "col-md-3">
+      <p> <%=link_to comment.user.full_name, user_path(comment.user_id)%></p>
+      <p class = "text-muted"> <%= time_ago_in_words(comment.created_at) + ' ago'%></p>
+      <br>
+    </div>
+    <div class = "col-md-9">
+      <%=comment.body%>
+    </div>
+  </div>
+    <%end%>
+  <%end%>
+
+
+<%=form_for [@project, @task, @comment], html:{class: "form-horizontal"} do |f|%>
+<div class = "form-group">
+  <div class = "col-md-9 col-md-offset-3">
+    <%=f.text_area :body, class: "form-control"%>
+  </div>
 </div>
+
+
+<div class = "form-group">
+  <div class = "col-md-9 col-md-offset-3">
+    <%=f.submit "Add Comment", class: "btn btn-primary"%>
+  </div>
+</div>
+
+<%end%>

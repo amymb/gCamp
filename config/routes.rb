@@ -6,8 +6,10 @@ Rails.application.routes.draw do
 
   resources :users
   resources :projects do
-    resources :tasks
     resources :memberships
+    resources :tasks do
+      resources :comments, only: [:create]
+    end
   end
   get 'sign-up', to: 'registrations#new'
   post 'sign-up', to: 'registrations#create'
