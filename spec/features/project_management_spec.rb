@@ -86,7 +86,10 @@ feature 'can CRUD projects' do
 
     expect(page).to have_content "Project was successfully deleted"
     expect(page).to_not have_content @project.name
-    
+
+    visit about_path
+    expect(page).to have_content "0 Projects, 0 Tasks, 0 Project Members"
+
   end
 
   scenario 'project has breadcrumbs' do
