@@ -35,4 +35,13 @@ describe User do
     user.valid?
     expect(user.errors[:last_name]).to include("can't be blank")
   end
+
+  it "can be destroyed without destroying comments" do
+    user = create_user
+    task = create_task
+    comment = Comment.create!(user_id: user.id, task_id: task.id, body: "boomerang")
+
+    user.destroy
+    expect(comment.reload.user_id).to eq(nil)
+  end
 end

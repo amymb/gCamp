@@ -37,7 +37,7 @@ feature 'user can comment on tasks' do
 
       expect(page).to have_content "Swedish fish, peach rings, gummi bears"
       expect(page).to_not have_content "Goosey Loosey"
-      expect(page).to have_content "deleted user"
+      expect(page).to have_content "(deleted user)"
     end
 
 end
