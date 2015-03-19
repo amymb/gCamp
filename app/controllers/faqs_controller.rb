@@ -1,4 +1,4 @@
-class FaqsController < ApplicationController
+class FaqsController < PublicController
   def index
     @common_questions = CommonQuestion.all
 end
