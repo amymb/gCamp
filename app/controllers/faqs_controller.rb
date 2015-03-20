@@ -1,11 +1,12 @@
 class FaqsController < PublicController
   def index
     @common_questions = CommonQuestion.all
-end
+  end
 
-def CommonQuestion_params
-  params[:commonquestion][:question]
-  params[:commonquestion][:answer]
-  params.require(:commonquestion).permit(:question, :answer)
-end
+  def CommonQuestion_params
+    params[:commonquestion][:question]
+    params[:commonquestion][:answer]
+    params.require(:commonquestion).permit(:question, :answer)
+  end
+
 end
