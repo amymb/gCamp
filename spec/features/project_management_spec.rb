@@ -17,7 +17,7 @@ feature 'can CRUD projects' do
     sign_in_user
     visit projects_path
 
-    click_link "New Project"
+    find(".btn-info").click
     click_button "Create Project"
 
     expect(page).to have_content "Name can't be blank"
@@ -100,7 +100,7 @@ feature 'can CRUD projects' do
 
     visit projects_path
 
-    click_link "New Project"
+    find(".btn-info").click
 
     expect(page).to have_content "Projects New Project"
 
