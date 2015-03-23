@@ -24,7 +24,7 @@ feature "user authorization" do
     click_button "Sign Up"
 
     expect(page).to have_content "You have successfully signed up!"
-    expect(page).to have_selector('h1', :text => "Projects")
+    expect(page).to have_selector('h1', :text => "New Project")
   end
 
   scenario "user can sign in" do
