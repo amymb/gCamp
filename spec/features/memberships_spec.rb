@@ -5,10 +5,10 @@ feature 'manage memberships' do
     membership = create_membership
     sign_in_user
     visit projects_path
-    click_on 'Test Project'
+    expect(page).to have_content "Test Project"
     click_on '1 Member'
 
-    expect(page).to have_content "Piglet"
+    expect(page).to have_content "Goosey"
 
   end
 
@@ -53,7 +53,7 @@ feature 'manage memberships' do
     expect(page).to have_content "Goosey Loosey"
 
     find(".glyphicon").click
-    
+
     expect(page).to have_content "Goosey Loosey was successfully removed"
   end
 

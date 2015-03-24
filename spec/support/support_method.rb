@@ -1,6 +1,14 @@
 def sign_in_user
-  user = User.new(first_name: 'Piglet', last_name: 'Smith', email: 'piggy@email.com', password: 'verysafe', password_confirmation: 'verysafe')
-  user.save!
+  user = create_user
+  visit root_path
+  click_link 'Sign in'
+  fill_in :email, with: 'loosey_goosey@email.com'
+  fill_in :password, with: 'meh'
+  click_button 'Sign In'
+end
+
+
+def sign_in_user_2
   visit root_path
   click_link 'Sign in'
   fill_in :email, with: 'piggy@email.com'

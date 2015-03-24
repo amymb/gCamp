@@ -32,12 +32,12 @@ describe ProjectsController do
     end
   end
 
-  describe "GET #edit" do
-    it "assigns a project object" do
-      project = create_project
-
-      get :edit, id: project.id
-      expect(assigns(:project)).to eq project
-    end
-  end
+  # describe "GET #edit" do
+  #   it "assigns a project object" do
+  #     project = create_project
+  #
+  #     get :edit, id: project.id
+  #     expect(assigns(:project)).to eq project
+  #   end
+  # end
 end

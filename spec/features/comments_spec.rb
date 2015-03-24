@@ -3,7 +3,9 @@ require 'rails_helper'
 feature 'user can comment on tasks' do
   scenario 'comment can be created and shown' do
     task = create_task
-    sign_in_user
+    user_2 = create_user_2
+    Membership.create!(project_id: task.project.id, user_id: user_2.id, role: 'Member')
+    sign_in_user_2
     visit project_task_path(task.project, task)
 
     fill_in "comment_body", with: "blah blah blah"
@@ -19,7 +21,11 @@ feature 'user can comment on tasks' do
       task = create_task
       user = create_user
       comment = Comment.create!(user_id: user.id, task_id: task.id, body: "Swedish fish, peach rings, gummi bears")
-      sign_in_user
+
+      user_2 = create_user_2
+      Membership.create!(user_id: user2.id, project_id: task.project.id)
+      sign_in_user_2
+
       visit project_task_path(task.project, task)
 
       expect(page).to have_content "Goosey Loosey"

@@ -10,7 +10,7 @@
         <th> Tasks</th>
     </tr>
   </thead>
-<% @projects.each do |project| %>
+<% current_user.projects.each do |project| %>
   <tr>
     <div class=col-md-2>
       <td>

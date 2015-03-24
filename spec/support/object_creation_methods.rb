@@ -11,15 +11,6 @@ def create_task
 end
 
 
-def create_membership
-  @project = create_project
-  user = create_user
-  Membership.create!(
-    project_id: @project.id,
-    user_id: user.id,
-    role: 'Member'
-  )
-end
 
 def create_user
   User.create!(
@@ -28,12 +19,11 @@ def create_user
   )
 end
 
-def sign_in_user
-  user = User.new(first_name: 'Piglet', last_name: 'Smith', email: 'piggy@email.com', password: 'verysafe', password_confirmation: 'verysafe')
-  user.save!
-  visit root_path
-  click_link 'Sign in'
-  fill_in :email, with: 'piggy@email.com'
-  fill_in :password, with: 'verysafe'
-  click_button 'Sign In'
+def create_user_2
+  User.create!(
+  first_name: 'Piglet',
+  last_name: 'Smith',
+  email: 'piggy@email.com',
+  password: 'verysafe',
+   password_confirmation: 'verysafe')
 end

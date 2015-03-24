@@ -1,7 +1,9 @@
 class ProjectsController < ApplicationController
   before_action :ensure_authenticated
+  before_action :ensure_member, except: [:index, :new, :create]
+
   def index
-      @projects = Project.all
+    @projects = Project.all
   end
 
   def new
@@ -14,7 +16,6 @@ class ProjectsController < ApplicationController
       @project.memberships.create!(project_id: @project.id, user_id: current_user.id, role: "Owner")
       redirect_to project_tasks_path(@project)
       flash[:notice] = "Project was successfully created"
-
     else
       render :new
     end
@@ -48,7 +49,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  private
+private
 
   def project_params
     params.require(:project).permit(:name)
