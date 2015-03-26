@@ -1,5 +1,8 @@
 class UsersController < PrivateController
+before_action :set_user, only: [:show, :edit, :update, :destroy]
 before_action :ensure_authenticated
+before_action :ensure_current_user, only: [:edit, :update]
+
   def index
       @users=User.all
   end
@@ -19,15 +22,12 @@ before_action :ensure_authenticated
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
-    @user=User.find(params[:id])
   end
 
   def update
-    @user=User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "User was successfully updated"
       redirect_to users_path
@@ -37,7 +37,6 @@ before_action :ensure_authenticated
   end
 
   def destroy
-    @user=User.find(params[:id])
     if @user.destroy
       flash[:notice] = "User was successfully deleted"
       redirect_to users_path
@@ -52,5 +51,8 @@ before_action :ensure_authenticated
       params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 
+  def set_user
+    @user = User.find(params[:id])
+  end
 
 end

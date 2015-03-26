@@ -39,5 +39,10 @@ class PrivateController < ApplicationController
     end
   end
 
+  def ensure_current_user
+    if current_user.id != @user.id
+      raise AccessDenied
+    end
+  end
 
 end
