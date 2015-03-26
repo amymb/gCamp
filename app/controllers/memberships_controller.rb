@@ -2,8 +2,12 @@ class MembershipsController < PrivateController
   before_action do
     @project = Project.find(params[:project_id])
   end
+
+  before_action :set_membership, only: [:update, :destroy]
+
   before_action :ensure_member
-  before_action :ensure_owner, only: [:update, :destroy]
+  before_action :ensure_owner, only: [:update]
+  before_action :ensure_owner_or_self, only: [:destroy]
 
   def index
     @membership = @project.memberships.new
@@ -21,7 +25,6 @@ class MembershipsController < PrivateController
   end
 
   def update
-    @membership =Membership.find(params[:id])
     if @membership.update(membership_params)
       flash[:notice] = "#{@membership.user.full_name} was successfully updated"
       redirect_to project_memberships_path
@@ -31,14 +34,23 @@ class MembershipsController < PrivateController
   end
 
   def destroy
-    membership = @project.memberships.find(params[:id])
-    membership.destroy
-    flash[:notice] = "#{membership.user.full_name} was successfully removed"
-    redirect_to project_memberships_path
+    @membership.destroy
+    flash[:notice] = "#{@membership.user.full_name} was successfully removed"
+    if @membership.user_id == current_user.id
+      redirect_to projects_path
+    else
+      redirect_to project_memberships_path
+    end
   end
 
-
+private
   def membership_params
     params.require(:membership).permit(:user_id, :project_id, :role)
   end
+
+  def set_membership
+    @membership = Membership.find(params[:id])
+  end
+
+
 end
