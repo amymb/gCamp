@@ -7,30 +7,29 @@
   <thead>
     <tr>
         <th> Name</th>
-
         <th> Email</th>
         <th> </th>
     </tr>
   </thead>
-<% @users.each do |user| %>
-  <tr>
-    <div class=col-md-2>
-      <td>
-        <%=link_to user.first_name + ' ' + user.last_name, user%>
-      </td>
-    </div>
-
-    <div class=col-md-2>
-      <td>
-        <%=mail_to user.email%>
-      </td>
-    </div>
-    <td>
-      <div class="text-right">
-        <%=link_to "edit", edit_user_path(user)%>
+  <% @users.each do |user| %>
+    <tr>
+      <div class=col-md-2>
+        <td>
+          <%=link_to user.first_name + ' ' + user.last_name, user%>
+        </td>
       </div>
-    </td>
-  </tr>
-<%end%>
-
+      <div class=col-md-2>
+        <td>
+          <%=mail_to user.email%>
+        </td>
+      </div>
+      <td>
+        <%if user.id == current_user.id%>
+          <div class="text-right">
+            <%=link_to "edit", edit_user_path(user)%>
+          </div>
+        <%end%>
+      </td>
+    </tr>
+  <%end%>
 </table>
