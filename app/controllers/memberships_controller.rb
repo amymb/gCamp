@@ -1,7 +1,8 @@
-class MembershipsController < ApplicationController
+class MembershipsController < PrivateController
   before_action do
     @project = Project.find(params[:project_id])
   end
+  before_action :ensure_member
 
   def index
     @membership = @project.memberships.new

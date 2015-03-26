@@ -1,6 +1,8 @@
-class ProjectsController < ApplicationController
+class ProjectsController < PrivateController
+  before_action :set_project, except: [:index, :new, :create]
   before_action :ensure_authenticated
   before_action :ensure_member, except: [:index, :new, :create]
+  before_action :ensure_owner, only: [:edit, :update, :delete]
 
   def index
     @projects = Project.all
@@ -22,15 +24,12 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
   end
 
   def edit
-    @project = Project.find(params[:id])
   end
 
   def update
-    @project = Project.find(params[:id])
     if @project.update(project_params)
       redirect_to project_path
       flash[:notice] = "Project was successfully updated"
@@ -40,7 +39,6 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:id])
     if @project.destroy
       redirect_to projects_path
       flash[:notice] = "Project was successfully deleted"
@@ -48,6 +46,11 @@ class ProjectsController < ApplicationController
       render :show
     end
   end
+
+  def set_project
+    @project = Project.find(params[:id])
+  end
+
 
 private
 
