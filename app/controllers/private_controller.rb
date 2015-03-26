@@ -32,5 +32,12 @@ class PrivateController < ApplicationController
     end
   end
 
+  def ensure_owner_is_present
+    if @project.memberships.where(role: "Owner").count <= 1
+      flash[:warning] = "Projects must have at least one owner"
+      redirect_to project_memberships_path(@project)
+    end
+  end
+
 
 end
