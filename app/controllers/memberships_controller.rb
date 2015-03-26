@@ -3,6 +3,7 @@ class MembershipsController < PrivateController
     @project = Project.find(params[:project_id])
   end
   before_action :ensure_member
+  before_action :ensure_owner, only: [:update, :destroy]
 
   def index
     @membership = @project.memberships.new

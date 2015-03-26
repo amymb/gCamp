@@ -2,7 +2,7 @@ class ProjectsController < PrivateController
   before_action :set_project, except: [:index, :new, :create]
   before_action :ensure_authenticated
   before_action :ensure_member, except: [:index, :new, :create]
-  before_action :ensure_owner, only: [:edit, :update, :delete]
+  before_action :ensure_owner, only: [:edit, :update, :destroy]
 
   def index
     @projects = Project.all
