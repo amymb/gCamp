@@ -7,6 +7,6 @@
 
 <div class="form-group">
   <div class="col-md-offset-2 col-md-4 well">
-    <%=link_to "Delete User", @user, method: :delete, class: "btn btn-danger col-md-offset-4 col-md-4"%>
+    <%=link_to "Delete User", @user, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger col-md-offset-4 col-md-4"%>
   </div>
 </div>

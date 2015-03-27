@@ -1,7 +1,7 @@
 class UsersController < PrivateController
 before_action :set_user, only: [:show, :edit, :update, :destroy]
 before_action :ensure_authenticated
-before_action :ensure_current_user, only: [:edit, :update]
+before_action :ensure_current_user, only: [:edit, :update, :destroy]
 
   def index
       @users=User.all
@@ -37,12 +37,10 @@ before_action :ensure_current_user, only: [:edit, :update]
   end
 
   def destroy
-    if @user.destroy
       flash[:notice] = "User was successfully deleted"
-      redirect_to users_path
-    else
-      render :edit
-    end
+      session[:user_id] = nil
+      @user.destroy
+      redirect_to root_path
   end
 
 
