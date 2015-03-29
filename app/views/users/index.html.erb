@@ -20,15 +20,17 @@
       </div>
       <div class=col-md-2>
         <td>
-          <%=mail_to user.email%>
+          <%if user == current_user%>
+            <%=mail_to user.email%>
+          <%end%>
         </td>
       </div>
       <td>
-        <%if user.id == current_user.id%>
-          <div class="text-right">
+        <div class="text-right">
+          <%if user == current_user%>
             <%=link_to "edit", edit_user_path(user)%>
-          </div>
-        <%end%>
+          <%end%>
+        </div>
       </td>
     </tr>
   <%end%>
