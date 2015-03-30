@@ -12,7 +12,7 @@
   <dd><%=@user.first_name%></dd>
   <dt>Last name </dt>
   <dd><%=@user.last_name%></dd>
-  <%if @user == current_user || current_user.admin == true %>
+  <%if @user == current_user || (@user.projects & current_user.projects).any? || current_user.admin == true %>
     <dt>Email</dt>
     <dd><%=mail_to @user.email%></dd>
   <%end%>

@@ -20,7 +20,7 @@
       </div>
       <div class=col-md-2>
         <td>
-          <%if user == current_user || current_user.admin == true%>
+          <%if user == current_user || current_user.admin == true || ((user.projects & current_user.projects).any?)%>
             <%=mail_to user.email%>
           <%end%>
         </td>
