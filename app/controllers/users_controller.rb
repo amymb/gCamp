@@ -2,6 +2,7 @@ class UsersController < PrivateController
 before_action :set_user, only: [:show, :edit, :update, :destroy]
 before_action :ensure_authenticated
 before_action :ensure_current_user, only: [:edit, :update, :destroy]
+before_action :ensure_self_or_admin, only: [:edit, :udpate, :destroy]
 
   def index
       @users=User.all
@@ -46,7 +47,7 @@ before_action :ensure_current_user, only: [:edit, :update, :destroy]
 
   private
   def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
   end
 
   def set_user

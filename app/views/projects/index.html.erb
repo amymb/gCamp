@@ -10,17 +10,33 @@
         <th> Tasks</th>
     </tr>
   </thead>
-<% current_user.projects.each do |project| %>
-  <tr>
-    <div class=col-md-2>
-      <td>
-        <%=link_to project.name, project%>
-      </td>
-      <td>
-        <%=link_to project.tasks.count, project_tasks_path(project)%>
-      </td>
-    </div>
-  </tr>
-<%end%>
 
-</table>
+  <%if current_user.admin == true%>
+    <%@projects.each do |project|%>
+      <tr>
+        <div class=col-md-2>
+          <td>
+            <%=link_to project.name, project%>
+          </td>
+          <td>
+            <%=link_to project.tasks.count, project_tasks_path(project)%>
+          </td>
+        </div>
+      </tr>
+    <%end%>
+  </table>
+  <%else current_user.admin == false %>
+    <%current_user.projects.each do |project| %>
+      <tr>
+        <div class=col-md-2>
+          <td>
+            <%=link_to project.name, project%>
+          </td>
+          <td>
+            <%=link_to project.tasks.count, project_tasks_path(project)%>
+          </td>
+        </div>
+      </tr>
+    <%end%>
+  </table>
+<%end%>

@@ -10,7 +10,7 @@
   </ol>
 </div>
 
-<%if current_user.memberships.find_by(project_id: @project).role == "Owner"%>
+<%if (current_user.admin == true) || (current_user.memberships.find_by(project_id: @project).role == "Owner")%>
   <div class = "row">
     <div class = "col-md-7">
     <% if @membership.errors.any? %>

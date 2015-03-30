@@ -20,14 +20,14 @@
       </div>
       <div class=col-md-2>
         <td>
-          <%if user == current_user%>
+          <%if user == current_user || current_user.admin == true%>
             <%=mail_to user.email%>
           <%end%>
         </td>
       </div>
       <td>
         <div class="text-right">
-          <%if user == current_user%>
+          <%if user == current_user || current_user.admin == true%>
             <%=link_to "edit", edit_user_path(user)%>
           <%end%>
         </div>

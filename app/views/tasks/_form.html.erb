@@ -15,11 +15,11 @@
     </div>
   </div>
 
-  <% unless @task.new_record? %>
+  <% if @task.new_record? != true %>
     <div class="form-group">
      <div class="col-sm-offset-2 col-md-5">
-       <%=task.check_box :completed%>
        <%=task.label "Complete"%>
+       <%=task.check_box :completed%>
      </div>
    </div>
   <% end %>
