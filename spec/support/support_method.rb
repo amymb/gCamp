@@ -1,10 +1,10 @@
 def sign_in_user
-  user = create_user
   visit root_path
+  @user = create_user
   click_link 'Sign in'
   fill_in :email, with: 'loosey_goosey@email.com'
   fill_in :password, with: 'meh'
-  click_button 'Sign In'
+  click_on 'Sign In'
 end
 
 
