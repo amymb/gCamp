@@ -22,13 +22,15 @@ feature 'user can manage users' do
     expect(page).to have_content 'Last name can\'t be blank'
     expect(page).to have_content 'Email can\'t be blank'
 
-#    fill_in :first_name, with: "Boo"
-#    fill_in :last_name, with: "Radley"
-#    fill_in :email, with: "boo@email.com"
-#    click_link "Create User"
+   fill_in :user_first_name, with: "Boo"
+   fill_in :user_last_name, with: "Radley"
+   fill_in :user_email, with: "boo@email.com"
+   fill_in :user_password, with: "password"
+   fill_in :user_password_confirmation, with: "password"
+   click_button "Create User"
 
-#    expect(page).to have_content 'User successfully created'
-#    expect(page).to have_content 'boo@email.com'
+   expect(page).to have_content 'User was successfully created'
+   expect(page).to have_content 'boo@email.com'
 
   end
 
