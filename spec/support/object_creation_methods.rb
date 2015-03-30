@@ -5,25 +5,39 @@ def create_project
   )
 end
 
-def create_task
+def create_task(overrides = {})
   project = create_project
-  Task.create!(description: "baaaa", project_id: project.id)
+  defaults = {
+    description: "baaaa",
+    project_id: project.id
+  }
+  Task.create!(defaults.merge(overrides))
 end
 
 
 
-def create_user
-  User.create!(
+def create_user(overrides = {})
+  defaults = {
   first_name: 'Goosey', last_name: 'Loosey', email: 'loosegoose@email.com',
-  password: 'meh', password_confirmation: 'meh'
-  )
+  password: 'meh', password_confirmation: 'meh', admin: true
+  }
+  User.create!(defaults.merge(overrides))
 end
 
-def create_user_2
-  User.create!(
+def create_user_2(overrides = {})
+  defaults = {
   first_name: 'Piglet',
   last_name: 'Smith',
   email: 'piggy@email.com',
   password: 'verysafe',
-   password_confirmation: 'verysafe')
+  password_confirmation: 'verysafe',
+  admin: true
+  }
+  User.create!(defaults.merge(overrides))
+end
+
+def create_membership
+  project = create_project
+  user = create_user
+  Membership.create!(project_id: project.id, user_id: user.id, role: "Member")
 end

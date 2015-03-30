@@ -41,15 +41,11 @@ class PrivateController < ApplicationController
   end
 
   def ensure_self_or_admin
-    if current_user.admin == (false && (current_user.id == @user.user_id))
+    if current_user.admin == false && (current_user.id != @user.id)
       raise AccessDenied
     end
   end
 
-  def ensure_current_user
-    if current_user.admin == false && current_user.id != @user.id
-      raise AccessDenied
-    end
-  end
+
 
 end

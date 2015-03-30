@@ -1,15 +1,14 @@
 class UsersController < PrivateController
-before_action :set_user, only: [:show, :edit, :update, :destroy]
-before_action :ensure_authenticated
-before_action :ensure_current_user, only: [:edit, :update, :destroy]
-before_action :ensure_self_or_admin, only: [:edit, :udpate, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_authenticated
+  before_action :ensure_self_or_admin, only: [:edit, :udpate, :destroy]
 
   def index
-      @users=User.all
+    @users = User.all
   end
 
   def new
-    @user=User.new
+    @user = User.new
   end
 
   def create
@@ -38,10 +37,15 @@ before_action :ensure_self_or_admin, only: [:edit, :udpate, :destroy]
   end
 
   def destroy
-      flash[:notice] = "User was successfully deleted"
-      session[:user_id] = nil
+    flash[:notice] = "User was successfully deleted"
+    if current_user == @user
       @user.destroy
+      session[:user_id] = nil
       redirect_to root_path
+    else
+      @user.destroy
+      redirect_to users_path
+    end
   end
 
 

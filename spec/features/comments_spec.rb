@@ -2,9 +2,9 @@ require 'rails_helper'
 
 feature 'user can comment on tasks' do
   scenario 'comment can be created and shown' do
-    task = create_task
     user_2 = create_user_2
-    Membership.create!(project_id: task.project.id, user_id: user_2.id, role: 'Member')
+    task = create_task
+    Membership.create!(project_id: task.project_id, user_id: user_2.id, role: 'Member')
     sign_in_user_2
     visit project_task_path(task.project, task)
 
@@ -18,32 +18,32 @@ feature 'user can comment on tasks' do
   end
 
   scenario 'if user is deleted, comment author changes to deleted user' do
-      task = create_task
-      user = create_user
-      comment = Comment.create!(user_id: user.id, task_id: task.id, body: "Swedish fish, peach rings, gummi bears")
+    task = create_task
+    user = create_user
+    comment = Comment.create!(user_id: user.id, task_id: task.id, body: "Swedish fish, peach rings, gummi bears")
 
-      user_2 = create_user_2
-      Membership.create!(user_id: user2.id, project_id: task.project.id)
-      sign_in_user_2
+    user_2 = create_user_2
+    Membership.create!(user_id: user_2.id, project_id: task.project.id, role: "Member")
 
-      visit project_task_path(task.project, task)
+    sign_in_user_2
 
-      expect(page).to have_content "Goosey Loosey"
-      expect(page).to have_content "Swedish fish, peach rings, gummi bears"
+    visit project_task_path(task.project, task)
 
-      visit users_path
+    expect(page).to have_content "Goosey Loosey"
+    expect(page).to have_content "Swedish fish, peach rings, gummi bears"
 
-      click_on user.first_name
+    visit users_path
 
-      click_on "Edit"
+    click_on user.first_name
 
-      click_on "Delete"
+    click_on "Edit"
 
-      visit project_task_path(task.project, task)
+    click_on "Delete"
 
-      expect(page).to have_content "Swedish fish, peach rings, gummi bears"
-      expect(page).to_not have_content "Goosey Loosey"
-      expect(page).to have_content "(deleted user)"
-    end
+    visit project_task_path(task.project, task)
 
+    expect(page).to have_content "Swedish fish, peach rings, gummi bears"
+    expect(page).to_not have_content "Goosey Loosey"
+    expect(page).to have_content "(deleted user)"
+  end
 end
