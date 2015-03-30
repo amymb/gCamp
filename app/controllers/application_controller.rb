@@ -18,4 +18,8 @@ class ApplicationController < ActionController::Base
     render file: "public/404.html", status: 404
   end
 
+  def store_location
+    session[:return_to] = request.request_uri
+  end
+
 end

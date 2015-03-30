@@ -6,6 +6,7 @@ class PrivateController < ApplicationController
 
   def ensure_authenticated
     unless current_user
+    session[:return_to] = request.path
     flash[:blah] ='You must sign in'
     redirect_to sign_in_path
     end
