@@ -38,8 +38,8 @@ def create_user_2(overrides = {})
 end
 
 def create_membership(overrides = {})
-  project = create_project
+  @project = create_project
   user = create_user
-  defaults = {project_id: project.id, user_id: user.id, role: "Member"}
+  defaults = {project_id: @project.id, user_id: user.id, role: "Member"}
   Membership.create!(defaults.merge(overrides))
 end
