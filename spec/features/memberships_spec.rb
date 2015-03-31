@@ -68,8 +68,7 @@ feature 'manage memberships' do
 
     expect(page).to have_content "Piglet Smith was successfully removed"
 
-    find(".glyphicon").click
-    expect(page).to have_content "Projects must have at least one owner"
+    expect(page).to have_content "You are the last owner"
 
   end
 

@@ -58,7 +58,6 @@
                 <td class = "form-group"><%=f.collection_select(:role, Membership::ROLE, :to_s, :to_s, {}, {class: "form-control"})%></td>
                 <td class = "form-group"><%=f.submit "Update", class: "btn btn-primary"%></td>
                 <td>
-
                   <%if (@project.memberships.where(role: "Owner").count <=1 && membership.role == "Owner")%>
                     <%="You are the last owner"%>
                   <%else%>
