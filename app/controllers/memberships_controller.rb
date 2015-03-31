@@ -6,7 +6,7 @@ class MembershipsController < PrivateController
   before_action :set_membership, only: [:update, :destroy]
 
   before_action :ensure_member
-  before_action :ensure_owner, only: [:update]
+  before_action :ensure_owner_or_admin, only: [:update]
   before_action :ensure_owner_or_self, only: [:destroy]
   before_action :ensure_owner_is_present, only: [:update, :destroy]
 
