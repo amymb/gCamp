@@ -35,14 +35,14 @@
     </div>
   </div>
 
-  <% if current_user.admin == true%>
+  <%if current_user.admin == true%>
     <div class="form-group">
      <div class="col-sm-offset-2 col-md-5">
        <%=user.check_box :admin%>
        <%=user.label "Admin"%>
      </div>
    </div>
-  <% end %>
+  <%end %>
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-5">

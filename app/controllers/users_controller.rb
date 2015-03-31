@@ -1,7 +1,7 @@
 class UsersController < PrivateController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :ensure_authenticated
-  before_action :ensure_self_or_admin, only: [:edit, :udpate, :destroy]
+  before_action :ensure_self_or_admin, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -52,7 +52,7 @@ class UsersController < PrivateController
   private
 
   def user_params
-    if current_user.admin == true
+    if current_user.admin
       params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
     else
       params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
