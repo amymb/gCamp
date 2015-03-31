@@ -5,10 +5,10 @@ def create_project
 end
 
 def create_task(overrides = {})
-  project = create_project
+  @project = create_project
   defaults = {
     description: "baaaa",
-    project_id: project.id
+    project_id: @project.id
   }
   Task.create!(defaults.merge(overrides))
 end
