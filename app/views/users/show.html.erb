@@ -8,15 +8,15 @@
 </div>
 
 <div class="dl-horizontal">
-  <dt>First name </dt>
+  <dt>First Name </dt>
   <dd><%=@user.first_name%></dd>
-  <dt>Last name </dt>
+  <dt>Last Name </dt>
   <dd><%=@user.last_name%></dd>
   <%if @user == current_user || (@user.projects & current_user.projects).any? || current_user.admin == true %>
     <dt>Email</dt>
     <dd><%=mail_to @user.email%></dd>
   <%end%>
-  <dt> Tracker token <dt>
+  <dt> Pivotal Tracker Token <dt>
     <%if @user.tracker_token%>
     <dd><%=@user.display_tracker_token%></dd>
   <%end%>
