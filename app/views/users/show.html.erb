@@ -16,4 +16,8 @@
     <dt>Email</dt>
     <dd><%=mail_to @user.email%></dd>
   <%end%>
+  <%if @user.tracker_token%>
+    <dt> Tracker token <dt>
+    <dd><%=@user.display_tracker_token%></dd>
+  <%end%>
 </div>

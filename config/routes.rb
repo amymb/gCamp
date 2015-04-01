@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create]
     end
   end
+  resources :pivotal_api, only: [:show]
   get 'sign-up', to: 'registrations#new'
   post 'sign-up', to: 'registrations#create'
   get 'sign-in', to: 'authentication#new'

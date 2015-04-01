@@ -1,0 +1,26 @@
+<h1> <%="Stories for #{@project_name}"%> </h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th> Story</th>
+      <th> Estimate</th>
+      <th> Labels </th>
+      <th> Current State</th>
+    </tr>
+  </thead>
+  <%@pivotal_project_stories.each do |story|%>
+   <tr>
+      <div class=col-md-2>
+        <td> <%=link_to story[:name], story[:url]%> </td>
+        <td> <%=story[:estimate]%> </td>
+              <%string = ""%>
+        <td> <%story[:labels].each do |label| %>
+                <%string << "#{label[:name]}, "%>
+              <%end%>
+              <%=string.chomp(", ")%>
+              </td>
+        <td><%=story[:current_state]%> </td>
+      </div>
+    </tr>
+  <%end%>
+ </table>

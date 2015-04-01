@@ -40,3 +40,24 @@
     <%end%>
   </table>
 <%end%>
+
+<%if @pivotal_projects%>
+  <h1>Pivotal Tracker Projects</h1>
+
+  <table class="table">
+      <thead>
+        <tr>
+            <th> Name</th>
+        </tr>
+      </thead>
+    <% @pivotal_projects.each do |project| %>
+      <tr>
+        <div class=col-md-2>
+          <td>
+            <%= link_to project[:name], pivotal_api_path(project[:id], project_name: project[:name]) %>
+          </td>
+        </div>
+      </tr>
+    <%end%>
+  </table>
+<%end%>

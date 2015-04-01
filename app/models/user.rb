@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
   #before_action :check_credentials
 
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :admin
+  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :admin, :tracker_token
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
@@ -16,13 +16,12 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  # def check_credentials
-  #   if self.admin
-  #     attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :admin
-  #   else
-  #     attr_accessible :first_name, :last_name, :email, :password, :password_confirmation
-  #   end
-  # end
+  def display_tracker_token
+      plain_text = tracker_token[0,4]
+      plain_text + ('*' * (tracker_token.delete plain_text).length)
+  end
+
+
 
 
 end

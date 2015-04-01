@@ -1,73 +1,74 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-  <title>GCamp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <head>
+    <title>GCamp</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/projects">gCamp</a>
+        </div>
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <%=link_to(raw("Projects" + ('<span class="caret"></span>')), projects_path, class: "dropdown-toggle", data:{toggle: "dropdown"})%>
+              <ul class="dropdown-menu" role="menu">
+                <%current_user.projects.each do |project|%>
+                  <li><%=link_to "#{project.name}", project_path(project.id)%></li>
+                <%end%>
+                <li class="divider"></li>
+                <li><%=link_to "New Project", new_project_path%></li>
+              </ul>
+            </li>
+            <li><%=link_to "Users", users_path%></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <%if current_user%>
+              <li><%=link_to (current_user.first_name + ' ' + current_user.last_name), user_path(current_user)%></li>
+              <li><%=link_to "Sign Out", sign_out_path %></li>
+            <%else%>
+              <li><%=link_to "Sign up", sign_up_path%></li>
+              <li><%=link_to "Sign in", sign_in_path%></li>
+            <%end%>
+          </ul>
+        </div>
+    </nav>
+
     <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/projects">gCamp</a>
-      </div>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <%=link_to(raw("Projects" + ('<span class="caret"></span>')), projects_path, class: "dropdown-toggle", data:{toggle: "dropdown"})%>
-            <ul class="dropdown-menu" role="menu">
-              <%current_user.projects.each do |project|%>
-                <li><%=link_to "#{project.name}", project_path(project.id)%></li>
-              <%end%>
-              <li class="divider"></li>
-              <li><%=link_to "New Project", new_project_path%></li>
-            </ul>
-          </li>
-          <li><%=link_to "Users", users_path%></li>
-        </ul>
+      <% if flash[:notice].present? %>
+        <div class="alert alert-success">
+          <p><%= flash[:notice] %></p>
+        </div>
+      <% end %>
+      <% if flash[:blah].present? %>
+        <div class="alert alert-danger">
+          <p><%= flash[:blah] %></p>
+        </div>
+      <% end %>
+      <% if flash[:warning].present? %>
+        <div class="alert alert-danger">
+          <p><%= flash[:warning] %></p>
+        </div>
+      <% end %>
 
-        <ul class="nav navbar-nav navbar-right">
-          <%if current_user%>
-            <li><%=link_to (current_user.first_name + ' ' + current_user.last_name), user_path(current_user)%></li>
-            <li><%=link_to "Sign Out", sign_out_path %></li>
-          <%else%>
-            <li><%=link_to "Sign up", sign_up_path%></li>
-            <li><%=link_to "Sign in", sign_in_path%></li>
-          <%end%>
-        </ul>
-      </div>
-  </nav>
+      <%= yield %>
+    </div>
 
-  <div class="container">
-    <% if flash[:notice].present? %>
-      <div class="alert alert-success">
-        <p><%= flash[:notice] %></p>
-      </div>
-    <% end %>
-    <% if flash[:blah].present? %>
-      <div class="alert alert-danger">
-        <p><%= flash[:blah] %></p>
-      </div>
-    <% end %>
-    <% if flash[:warning].present? %>
-      <div class="alert alert-danger">
-        <p><%= flash[:warning] %></p>
-      </div>
-    <% end %>
+  </body>
 
-    <%= yield %>
-  </div>
-</body>
+  <footer>
+    <div class="container">
+      <hr>
+      <p class="text-center">
+        <%=link_to "Home", "/" %> | <%=link_to "About", "/about" %> | <%=link_to "Terms", "/terms"%> | <%=link_to "FAQ", "/faqs" %>
+      </p>
 
-<footer>
-  <div class="container">
-    <hr>
-    <p class="text-center">
-    <%=link_to "Home", "/" %> | <%=link_to "About", "/about" %> | <%=link_to "Terms", "/terms"%> | <%=link_to "FAQ", "/faqs" %>
-    </p>
-
-  </div>
-</footer>
+    </div>
+  </footer>
 </html>
