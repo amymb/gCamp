@@ -18,32 +18,31 @@
       <th> Due on</th>
       <th></th>
     </tr>
-      <% @tasks.each do |task| %>
-    <tr>
   </thead>
-  <div=col-md-2>
-  <td>
-    <%if task.completed == true%>
-        <s><%=link_to task.description, project_task_path(@project, task)%> <span class="badge"><%=task.comments.count%></span>
-      <%else%>
-          <%=link_to task.description, project_task_path(@project, task)%>  <span class="badge"><%=task.comments.count%></span>
-      <%end%>
-    </td>
-  </div>
-  <div=col-md-2>
-    <td>
-      <%if task.due_date != nil%>
-        <%=task.due_date.strftime("%m/%d/%Y")%>
-      <%end%>
-    </td>
-  </div>
-    <td>
-    <div class="text-right">
-      <%=link_to 'Edit', edit_project_task_path(@project, task), class: "btn btn-info"%>
-      <%=link_to '', project_task_path(@project, task), method: :delete, class:"glyphicon glyphicon-remove"%>
-    </div>
-  </td>
-  </tr>
-
+  <% @tasks.each do |task| %>
+    <tr>
+      <div=col-md-2>
+        <td>
+          <%if task.completed == true%>
+            <s><%=link_to task.description, project_task_path(@project, task)%> <span class="badge"><%=task.comments.count%></span>
+          <%else%>
+            <%=link_to task.description, project_task_path(@project, task)%>  <span class="badge"><%=task.comments.count%></span>
+          <%end%>
+        </td>
+      </div>
+      <div=col-md-2>
+        <td>
+          <%if task.due_date != nil%>
+            <%=task.due_date.strftime("%m/%d/%Y")%>
+          <%end%>
+        </td>
+      </div>
+      <td>
+        <div class="text-right">
+          <%=link_to 'Edit', edit_project_task_path(@project, task), class: "btn btn-info"%>
+          <%=link_to '', project_task_path(@project, task), method: :delete, class:"glyphicon glyphicon-remove"%>
+        </div>
+      </td>
+    </tr>
   <%end%>
 </table>

@@ -10,7 +10,11 @@ class PivotalApi
       req.headers['Content-Type'] = 'application/json'
       req.headers['X-TrackerToken'] = token
     end
+    if response.status == 403
+      403
+    else
     JSON.parse(response.body, symbolize_names: true)
+    end
   end
 
   def stories(token, project_id)
@@ -21,17 +25,4 @@ class PivotalApi
     end
     JSON.parse(response.body, symbolize_names: true)
   end
-
-
-  # def pivotal_tracker_project_name(pivotal_projects, id)
-  #   name = ""
-  #   pivotal_projects.each do |project|
-  #     if project[:id] == id
-  #       name << project[:name]
-  #     end
-  #   end
-  #   name
-  # end
-
-
 end

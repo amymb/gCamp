@@ -5,10 +5,14 @@ class ProjectsController < PrivateController
   before_action :ensure_owner_or_admin, only: [:edit, :update, :destroy]
 
   def index
-    @projects = Project.all
-    if current_user.tracker_token?
-      pivotal_api = PivotalApi.new
-      @pivotal_projects = pivotal_api.projects(current_user.tracker_token)
+    @projects = current_user.admin? ? Project.all : current_user.projects
+      if current_user.tracker_token?
+        @pivotal_projects = PivotalApi.new.projects(current_user.tracker_token)
+        if @pivotal_projects == 403
+         flash.now[:warning] = "Pivotal Tracker Token is invalid"
+       else
+         []
+       end
     end
   end
 
