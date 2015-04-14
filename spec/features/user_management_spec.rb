@@ -50,7 +50,7 @@ feature 'user can manage users' do
     visit users_path
     click_link "Test User1"
     click_link "Edit"
-    fill_in "Last name", with: "User123"
+    fill_in "Last Name", with: "User123"
     click_button "Update user"
     expect(page).to have_content "User was successfully updated"
     expect(page).to have_content "Test User123"
