@@ -1,25 +1,13 @@
+<div class = "grid">
 <div class="jumbotron">
   <h1>gCamp</h1>
   <p>Your life, organized.</p>
 </div>
 
 
-<div class="row">
-  <div class="col-md-4">
+  <div class="col-1-3">
     <%= image_tag("8969237967_c5960fc544_b.jpg", class: "img-responsive") %>
-  </div>
-  <div class="col-md-4">
-    <%= image_tag("8864977481_713b7cbda5_b.jpg", class: "img-responsive") %>
-  </div>
-  <div class="col-md-4">
-    <%= image_tag("8203794182_8004f8f636_b.jpg", class: "img-responsive") %>
-  </div>
-</div>
-
-<br>
-
-<div class="row">
-  <div class="col-md-4">
+    <br>
     <div class="panel panel-info">
       <div class="panel-heading">
         <h3 class="panel-title">Tasks</h3>
@@ -29,7 +17,10 @@
       </div>
     </div>
   </div>
-  <div class="col-md-4">
+
+  <div class="col-1-3">
+    <%= image_tag("8864977481_713b7cbda5_b.jpg", class: "img-responsive") %>
+    <br>
     <div class="panel panel-info">
       <div class="panel-heading">
         <h3 class="panel-title">Permissions</h3>
@@ -39,7 +30,10 @@
       </div>
     </div>
   </div>
-  <div class="col-md-4">
+
+  <div class="col-1-3">
+    <%= image_tag("8203794182_8004f8f636_b.jpg", class: "img-responsive") %>
+    <br>
     <div class="panel panel-info">
       <div class="panel-heading">
         <h3 class="panel-title">Comments</h3>
@@ -53,6 +47,7 @@
     </div>
   </div>
 </div>
+
 
 <% @quotes.each do |name,quote|%>
   <p><%=quote%></p>

@@ -13,6 +13,7 @@ class PivotalApi
     if response.status == 403
       403
     else
+binding.pry      
     JSON.parse(response.body, symbolize_names: true)
     end
   end
